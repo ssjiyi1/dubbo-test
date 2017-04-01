@@ -17,6 +17,7 @@ public class TimeClient {
 		EventLoopGroup group = new NioEventLoopGroup();
 		
 		try {
+			System.out.println("ddd");
 			Bootstrap b = new Bootstrap();
 			b.group(group).channel(NioSocketChannel.class)
 			.option(ChannelOption.TCP_NODELAY, true)
