@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+	
+	var socket;
+	
+	
+	var content = document.getElementById("content");
+	
+	if(!window.WebSocket){
+		alert("----");
+		window.WebSocket = window.MozWebSocket;
+	}
+	
+	if(window.WebSocket){
+		alert("2");
+		socket = new WebSocket("ws://localhost:8888/chat");
+		socket.onmessage = function(event){
+			alert(event.data);
+		};
+		
+		socket.onopen = function(event){
+			alert("打开websocket");
+		};
+		
+		socket.onclose = function(event){
+			alert("关闭socket");
+		};
+	}else{
+		alert("浏览器不支持 。。。。 ");
+	};
+	
+	
+	function send(){
+		if(!window.WebSocket){
+			return ;
+		};
+		
+		if(socket.readyState ==  WebSocket.OPEN){
+			socket.send("-------------------aadsfdsf");
+		};
+	};
+	
+	</script>
+
+
+		<input type="button" value="发送" onclick="javascript:send();">
+		
+		
+		<textarea rows="30" cols="50"  id="content" ></textarea>
+		
+		
+
+</body>
+</html>
